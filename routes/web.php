@@ -15,19 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('listings',[
+        "header"=>'Latest Listing',
+        "listings"=>[
+            ["id"=>1,
+            "title"=>"entry django dev",
+            "description"=>"Eager to learn and familiar with python, django and SQLite"
+            ],
+            ["id"=>2,
+            "title"=>"Senior Node dev",
+            "description"=>"Skills with Node.js MongoDb and strong leadership skills"
+            ]
+            
+        ]
+    ]);
 });
 
-Route::get('/hello',function(){
-    return response("<h1>hello world</h1>",200)
-    ->header('Content-Type','text/plain')
-    ->header('Token','secure35');
-});
 
-Route::get('/posts/{id}',function($id){
-    return response("post $id");
-});
-
-Route::get('/search',function(Request $request){
-    return($request->name);
-});
