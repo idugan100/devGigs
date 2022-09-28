@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,22 +14,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+//all listings 
+Route::get('/listings', function () {
     return view('listings',[
         "header"=>'Latest Listing',
-        "listings"=>[
-            ["id"=>1,
-            "title"=>"entry django dev",
-            "description"=>"Eager to learn and familiar with python, django and SQLite"
-            ],
-            ["id"=>2,
-            "title"=>"Senior Node dev",
-            "description"=>"Skills with Node.js MongoDb and strong leadership skills"
-            ]
-            
-        ]
+        "listings"=>Listing::all()
     ]);
+});
+//single listing
+Route::get('/listings/{id}',function($id){
+    return view('listing',[
+        "header"=>'Latest Listing',
+        "listing"=>Listing::find($id)
+    ]);
+    
 });
 
 
