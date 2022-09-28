@@ -1,3 +1,7 @@
+@extends('layout')
+
+
+@section('content')
 <h1>{{$header}}</h1>
 @if (count($listings)==0)
     <p>no listings found</p>
@@ -9,3 +13,5 @@
    <h2> <a href="\listings\{{$listing['id']}}">{{$listing["title"]}}</a></h2>
     <p> {{$listing["description"]}}</p>
 @endforeach
+@endsection
+
