@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
 
 class ListingControler extends Controller
 {   
     //get all listings
     public function index(){
+        
         return view('listings.index',[
             "header"=>'Latest Listing',
-            "listings"=>Listing::all()
+            "listings"=>Listing::latest()->filter(request(['tag']))->get()
         ]);
 
     }
