@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('website');
             $table->longtext('description');
             $table->timestamps();
+            $table->string('logo')->nullable();
         });
     }
 
