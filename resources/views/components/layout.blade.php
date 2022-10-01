@@ -44,7 +44,7 @@
                     >
                 </li>
                 <li>
-                    <form class="inline" action="/logout" >
+                    <form class="inline" action="/logout" method="POST">
                         @csrf
                         <button type="submit"><i class="fa-solid fa-door-closed"></i>Logout</button>
                     </form>

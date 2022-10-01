@@ -45,11 +45,16 @@ Route::delete('/listings/{listing}',[ListingControler::class,'destroy']);
 //single listing
 Route::get('/listings/{listing}',[ListingControler::class,'show']);
 
-//create new use
+//show login page
+Route::get('/login',[UserController::class,'login']);
+
+//create new user
 Route::post('/users',[UserController::class,'store']);
 //log user out
-Route::get('/logout',[UserController::class,'logout']);
+Route::post('/logout',[UserController::class,'logout']);
 //show register create form
 Route::get('/register',[UserController::class,'create']);
+//login in users
+Route::post('/users/authenticate',[UserController::class,'authenticate']);
 
 
