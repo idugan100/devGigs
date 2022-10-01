@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+
 use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -16,6 +17,10 @@ class ListingControler extends Controller
     }
     //updtae listing
     public function update(Request $request, Listing $listing){
+        //make sure user is owner
+        if($listing->user_id!=auth()->id()){
+            abort(403,'unauthorized');
+        }
         $formFields=$request->validate([
             'title'=>'required',
             'company'=>'required',//table and attribite it cannot duplicate
@@ -55,6 +60,9 @@ class ListingControler extends Controller
     }
 
     public function destroy(Listing $listing){
+        if($listing->user_id!=auth()->id()){
+            abort(403,'unauthorized');
+        }
         $listing->delete();
         return redirect('/')->with('message','Listing successfully deleted!');
     }
@@ -85,10 +93,18 @@ class ListingControler extends Controller
             
         }
         
+        $formFields['user_id']=auth()->id();
         
         Listing::create($formFields);
 
         return redirect('/')->with('message','Listing created successfully!');
 
+    }
+
+    public function manage() {
+        $user=auth()->user();
+        
+        
+        return view('listings.manage', ['listings' => auth()->user()->listing]);
     }
 }

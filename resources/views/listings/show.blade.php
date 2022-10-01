@@ -51,7 +51,9 @@
                         </div>
                     </div>
                 </x-card>
-
+                @if ($listing->user_id==auth()->id())
+                    
+                
                 <x-card class="mt-4 p-2 flex space-x-6">
                     <i class='fa-solid fa-pencil'></i>
                     <a href="/listings/{{$listing->id}}/edit">Edit</a>
@@ -65,6 +67,7 @@
                     </form>
 
                 </x-card>
+                @endif
             </div>
 
         </x-layout>
