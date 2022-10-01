@@ -32,7 +32,19 @@ Route::get('/listings/create',[ListingControler::class,'create']);
 //store new listing
 Route::post('/listings',[ListingControler::class,'store']);
 
+//show edit from
+Route::get('/listings/{listing}/edit',[ListingControler::class,'edit']);
+
+//store edits
+Route::put('/listings/{listing}',[ListingControler::class,'update']);
+
+//delete single listing
+Route::delete('/listings/{listing}',[ListingControler::class,'destroy']);
+
 //single listing
 Route::get('/listings/{listing}',[ListingControler::class,'show']);
+
+//show register create form
+Route::get('/');
 
 
